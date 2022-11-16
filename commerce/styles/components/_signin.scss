@@ -1,0 +1,9 @@
+@use "../settings" as *;
+
+.signin {
+  &__form {
+    &-input {
+      background: $dark-blue;
+    }
+  }
+}
