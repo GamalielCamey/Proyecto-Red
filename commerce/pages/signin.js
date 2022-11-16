@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {signIn} from "next-auth/react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
   faEnvelope,
@@ -13,20 +14,6 @@ export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const [users, setUsers] = useState("");
-
-  // const getUsers = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     await fetch(`api/getUsers`, {
-  //       method: "GET",
-  //       headers: {"Content-Type": "application/json"},
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => setUsers(data));
-  //   } catch (error) {}
-  // };
-
   const addUser = async (e) => {
     e.preventDefault();
     try {
@@ -39,15 +26,21 @@ export default function Signin() {
     } catch (error) {}
   };
 
+  const handleSubmit = (e) => {
+    addUser(e);
+    signIn();
+  };
+
   return (
     <div className="signin">
       <h2>Sign Up</h2>
-      <form className="signin__form" onSubmit={(e) => addUser(e)}>
+      <form className="signin__form" onSubmit={(e) => handleSubmit(e)}>
         <div className="signin__form__textbox">
           <input
             type="text"
             onChange={(e) => setName(e.target.value)}
             value={name}
+            required
           />
           <label>Name</label>
           <FontAwesomeIcon
@@ -60,6 +53,7 @@ export default function Signin() {
             type="text"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            required
           />
           <label>Email</label>
           <FontAwesomeIcon
@@ -72,6 +66,7 @@ export default function Signin() {
             type="text"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            required
           />
           <label>Password</label>
           <FontAwesomeIcon

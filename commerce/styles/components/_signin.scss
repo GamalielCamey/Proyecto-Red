@@ -60,7 +60,7 @@ button {
         transition: 0.3s;
       }
 
-      :is(input:focus) ~ label {
+      :is(input:focus, input:valid) ~ label {
         translate: -25px -40px;
         scale: 1;
         color: $focus-white;
