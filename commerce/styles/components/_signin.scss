@@ -1,9 +1,97 @@
 @use "../settings" as *;
 
+input,
+button {
+  border: 0;
+  width: 100%;
+  height: 60px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+}
+
 .signin {
+  font-family: "rounded";
+  font-weight: 200;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding: 80px 50px;
+  background: $dark-blue;
+
+  h2 {
+    margin: 0 0 33px;
+    letter-spacing: 1px;
+    color: $focus-white;
+  }
+
+  p {
+    color: #778395;
+  }
+
   &__form {
-    &-input {
-      background: $dark-blue;
+    margin: 0;
+    display: grid;
+    gap: 16px;
+    &__textbox {
+      position: relative;
+      margin-bottom: 16px;
+
+      input {
+        padding: 0 24px 0 36px;
+        border-bottom: 2px solid #2b3442;
+        color: $focus-white;
+        height: 72px;
+        &:focus {
+          border-color: #216ce7;
+        }
+      }
+      label {
+        position: absolute;
+        top: 50%;
+        left: 22px;
+        translate: 0 -50%;
+        color: $regular-white;
+        pointer-events: none;
+        transition: 0.3s;
+      }
+
+      :is(input:focus) ~ label {
+        translate: -25px -40px;
+        scale: 1;
+        color: $focus-white;
+      }
+
+      :is(input:focus) ~ &-icon {
+        color: $focus-white;
+      }
+
+      &-icon {
+        position: absolute;
+        top: 50%;
+        translate: 0 -50%;
+        left: 0;
+        pointer-events: none;
+        color: $regular-white;
+      }
+    }
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 0 24px;
+      border-radius: 6px;
+      background: #2e6aca;
+      color: #f9f9f9;
+      border: 0;
+      font-family: inherit;
+      font-weight: 500;
+      letter-spacing: 1px;
     }
   }
 }

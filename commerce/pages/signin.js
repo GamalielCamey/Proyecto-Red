@@ -1,9 +1,18 @@
 import {useState} from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faKey,
+  faUserCircle,
+  faArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
-const Signin = () => {
+export default function Signin() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   // const [users, setUsers] = useState("");
 
   // const getUsers = async (e) => {
@@ -32,27 +41,51 @@ const Signin = () => {
 
   return (
     <div className="signin">
+      <h2>Sign Up</h2>
       <form className="signin__form" onSubmit={(e) => addUser(e)}>
-        <input
-          className="signin__form-input"
-          type="text"
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-        ></input>
-        <input
-          type="text"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        ></input>
-        <input
-          type="text"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        ></input>
-        <button type="submit">Create User</button>
+        <div className="signin__form__textbox">
+          <input
+            type="text"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+          />
+          <label>Name</label>
+          <FontAwesomeIcon
+            className="signin__form__textbox-icon"
+            icon={faUserCircle}
+          />
+        </div>
+        <div className="signin__form__textbox">
+          <input
+            type="text"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
+          <label>Email</label>
+          <FontAwesomeIcon
+            className="signin__form__textbox-icon"
+            icon={faEnvelope}
+          />
+        </div>
+        <div className="signin__form__textbox">
+          <input
+            type="text"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
+          <label>Password</label>
+          <FontAwesomeIcon
+            className="signin__form__textbox-icon"
+            icon={faKey}
+          />
+        </div>
+        <p>
+          Already signed in?<Link href="/login">Login</Link>
+        </p>
+        <button type="submit">
+          Create User <FontAwesomeIcon icon={faArrowRight} />
+        </button>
       </form>
     </div>
   );
-};
-
-export default Signin;
+}
