@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import {signOut, getSession} from "next-auth/react";
+import {getSession} from "next-auth/react";
 
 export default function Home({session}) {
   return (
