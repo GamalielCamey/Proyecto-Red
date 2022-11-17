@@ -1,17 +1,10 @@
-import Link from "next/link";
+import Header from "../components/Header";
 import {signOut, getSession} from "next-auth/react";
 
 export default function Home({session}) {
   return (
     <div>
-      {session ? <h1>{`Hello ${session.user.name}`}</h1> : null}
-      {session ? (
-        <button onClick={() => signOut()}>SignOut</button>
-      ) : (
-        <Link href="/signin">
-          <button>SignIn</button>
-        </Link>
-      )}
+      <Header session={session} />
     </div>
   );
 }
