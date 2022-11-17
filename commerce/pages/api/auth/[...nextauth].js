@@ -1,14 +1,20 @@
 import NextAuth from "next-auth";
-import Auth0Provider from "next-auth/providers/auth0";
+import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import {PrismaClient} from "@prisma/client";
+import {PrismaAdapter} from "@next-auth/prisma-adapter";
 
 const prisma = new PrismaClient();
 
 export const authOptions = {
   // Configure one or more authentication providers
+  adapter: PrismaAdapter(prisma),
 
   providers: [
+    GithubProvider({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
     // Auth0Provider({
     //   clientId: process.env.AUTH0_CLIENT_ID,
     //   clientSecret: process.env.AUTH0_CLIENT_SECRET,
@@ -44,7 +50,6 @@ export const authOptions = {
         if (user.password === password) {
           return user;
         }
-
         // If no error and we have user data, return it
         // if (credentials.password === user.password && user) {
         //   return user;

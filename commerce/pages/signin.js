@@ -28,6 +28,7 @@ export default function Signin() {
 
   const handleSubmit = (e) => {
     addUser(e);
+
     signIn();
   };
 

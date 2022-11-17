@@ -2,6 +2,7 @@ import Link from "next/link";
 import {signOut, getSession} from "next-auth/react";
 
 export default function Home({session}) {
+  console.log(session);
   return (
     <div>
       <h1>Hello World</h1>

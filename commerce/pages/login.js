@@ -1,13 +1,13 @@
 import {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {signIn, getProviders} from "next-auth/react";
+import {signIn, getProviders, getSession} from "next-auth/react";
 import {
   faEnvelope,
   faKey,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function Login({providers}) {
+export default function Login({providers, session}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,9 +20,9 @@ export default function Login({providers}) {
     });
   };
 
-  // const auth0 = Object.values(providers).filter(
-  //   (provider) => provider.id === "auth0"
-  // );
+  const github = Object.values(providers).filter(
+    (provider) => provider.id === "github"
+  );
 
   return (
     <div className="signin">
@@ -59,17 +59,19 @@ export default function Login({providers}) {
           Go! <FontAwesomeIcon icon={faArrowRight} />
         </button>
 
-        {/* <button onClick={() => signIn(auth0[0].id)}>
-        Sign in with {auth0[0].name}
-      </button> */}
+        <button onClick={() => signIn(github[0].id, {callbackUrl: "/"})}>
+          Sign in with {github[0].name}
+        </button>
       </form>
     </div>
   );
 }
 
-// export async function getServerSideProps(context) {
-//   const providers = await getProviders();
-//   return {
-//     props: {providers},
-//   };
-// }
+export async function getServerSideProps(context) {
+  const providers = await getProviders();
+  const session = await getSession(context);
+
+  return {
+    props: {providers, session},
+  };
+}
