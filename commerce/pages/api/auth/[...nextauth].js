@@ -1,8 +1,9 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
-import CredentialsProvider from "next-auth/providers/credentials";
-import {PrismaClient} from "@prisma/client";
+import GoogleProvider from "next-auth/providers/google";
+import DiscordProvider from "next-auth/providers/discord";
 import {PrismaAdapter} from "@next-auth/prisma-adapter";
+import {PrismaClient} from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -15,54 +16,18 @@ export const authOptions = {
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
     }),
-    // Auth0Provider({
-    //   clientId: process.env.AUTH0_CLIENT_ID,
-    //   clientSecret: process.env.AUTH0_CLIENT_SECRET,
-    //   issuer: process.env.AUTH0_DOMAIN,
-    // }),
-    CredentialsProvider({
-      // The name to display on the sign in form (e.g. 'Sign in with...')
-      name: "credentials",
-      // The credentials is used to generate a suitable form on the sign in page.
-      // You can specify whatever fields you are expecting to be submitted.
-      // e.g. domain, username, password, 2FA token, etc.
-      // You can pass any HTML attribute to the <input> tag through the object.
-      credentials: {
-        // email: {type: "text"},
-        // password: {type: "text"},
-      },
-      async authorize(credentials, req) {
-        // You need to provide your own logic here that takes the credentials
-        // submitted and returns either a object representing a user or value
-        // that is false/null if the credentials are invalid.
-        // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
-        // You can also use the `req` object to obtain additional parameters
-        // (i.e., the request IP address)
-
-        const {email, password} = credentials;
-
-        const user = await prisma.user.findUnique({
-          where: {
-            email: email,
-          },
-        });
-
-        if (user.password === password) {
-          return user;
-        }
-        // If no error and we have user data, return it
-        // if (credentials.password === user.password && user) {
-        //   return user;
-        // }
-        // // Return null if user data could not be retrieved
-        // return null;
-      },
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
-
+    DiscordProvider({
+      clientId: process.env.DISCORD_CLIENT_ID,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET,
+    }),
     // ...add more providers here
   ],
   pages: {
-    signIn: "/login",
+    signIn: "/signin",
   },
 };
 export default NextAuth(authOptions);
