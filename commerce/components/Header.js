@@ -4,9 +4,9 @@ import {signOut} from "next-auth/react";
 export default function Header({session}) {
   console.log(session);
   return (
-    <div>
+    <div className="container">
       {session ? (
-        <div className="user">
+        <div className="container__user">
           <h3>{`Hello ${session.user.name}`}</h3>
           <img
             style={{borderRadius: "50%", width: "30px"}}
