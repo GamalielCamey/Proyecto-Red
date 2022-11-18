@@ -1,16 +1,5 @@
 @use "../settings" as *;
 
-input,
-button {
-  border: 0;
-  width: 100%;
-  height: 60px;
-  background: transparent;
-  font-family: inherit;
-  font-size: 15px;
-  outline: none;
-}
-
 .signin {
   font-family: "rounded";
   font-weight: 200;
@@ -37,20 +26,34 @@ button {
     display: grid;
     gap: 16px;
 
-    button {
+    &-BTN {
       display: flex;
       align-items: center;
+      border: 0;
+      width: 100%;
+      height: 60px;
+      background: transparent;
+      font-family: inherit;
+      font-size: 15px;
+      outline: none;
       justify-content: space-between;
       cursor: pointer;
       padding: 0 24px;
       border-radius: 6px;
-      background: #2e6aca;
-      color: #f9f9f9;
+      background: $button-inactive-blue;
+      color: $focus-white;
       border: 0;
       font-family: inherit;
       font-weight: 500;
       letter-spacing: 1px;
-      margin: 20px;
+      margin-bottom: 20px;
+      transition: 0.2s ease;
+
+      &:hover {
+        border: 4px solid $button-inactive-blue;
+        background: $focus-white;
+        color: $button-inactive-blue;
+      }
     }
   }
 }

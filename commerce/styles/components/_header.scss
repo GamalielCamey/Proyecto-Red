@@ -1,0 +1,64 @@
+@use "../settings" as *;
+
+button {
+  border: 0;
+  width: 80px;
+  height: 40px;
+  background: transparent;
+  font-family: "rounded";
+  font-size: 12px;
+  outline: none;
+}
+
+.container {
+  font-family: "rounded";
+  font-weight: 200;
+  position: fixed;
+  align-items: center;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  height: 10%;
+  width: 100%;
+  padding: 35px;
+  background: $dark-blue;
+
+  h3 {
+    font-family: "rounded";
+    color: $focus-white;
+    margin-right: 15px;
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  button {
+    position: fixed;
+    top: 24px;
+    right: 15px;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    border-radius: 6px;
+    background: $button-inactive-blue;
+    color: $focus-white;
+    border: 0;
+    font-family: inherit;
+    font-weight: 500;
+    letter-spacing: 1px;
+
+    transition: 0.2s ease;
+
+    &:hover {
+      border: 4px solid $button-inactive-blue;
+      background: $focus-white;
+      color: $button-inactive-blue;
+    }
+  }
+
+  &__user {
+    display: inline-flex;
+    flex-direction: row;
+    width: max-content;
+    justify-content: space-between;
+  }
+}
