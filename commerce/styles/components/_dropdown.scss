@@ -1,0 +1,23 @@
+@use "../settings" as *;
+
+.dropdown {
+  color: $focus-white;
+  font-family: "rounded";
+  position: absolute;
+  top: 44px;
+  width: 200px;
+  transform: translateX(-5%);
+  background-color: $bg;
+  padding: 1rem;
+  overflow: hidden;
+
+  &__item {
+    height: 50px;
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    transition: background $speed;
+    padding: 0.5rem;
+  }
+}
