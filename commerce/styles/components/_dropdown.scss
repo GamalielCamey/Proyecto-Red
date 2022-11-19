@@ -15,9 +15,13 @@
     height: 50px;
     display: flex;
     text-decoration: none;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     transition: background $speed;
     padding: 0.5rem;
+
+    &:hover {
+      background-color: $bg-light-accent;
+    }
   }
 }
