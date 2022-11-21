@@ -1,0 +1,8 @@
+@use "../settings" as *;
+
+.home{
+    @include flex();
+    min-height: calc(100vh - $nav-size);
+    background: $red;
+    color: $focus-white;
+}

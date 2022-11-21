@@ -1,10 +1,10 @@
-import Header from "../components/Header";
 import {getSession} from "next-auth/react";
+import LayoutPage from "../components/LayoutPage";
 
-export default function Home({session}) {
+export default function Main({session}) {
   return (
     <div>
-      <Header session={session} />
+      <LayoutPage session={session} />
     </div>
   );
 }
