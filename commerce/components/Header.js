@@ -12,14 +12,15 @@ import Link from "next/link";
 import {signOut} from "next-auth/react";
 
 const Dropdown = forwardRef((props, ref) => {
+
   return (
     <>
       {props.session ? (
         <div className="dropdown">
-          <Link className="dropdown__item" href="#" onClick={() => signOut()}>
+          <Link className="dropdown__item" href="/" onClick={() => signOut()}>
             Logout <FontAwesomeIcon icon={faArrowRightFromBracket} />
           </Link>
-          <Link className="dropdown__item" href="#">
+          <Link className="dropdown__item" href="/profile">
             Profile <FontAwesomeIcon icon={faUser} />
           </Link>
         </div>

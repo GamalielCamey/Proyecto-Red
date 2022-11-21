@@ -1,13 +1,11 @@
-import Header from "../components/Header";
 import {getSession} from "next-auth/react";
 import Profile from "./profile";
 
 export default function Home({session}) {
+  console.log(session);
   return (
     <div>
-      <Header session={session}>
-        <Profile session={session} />
-      </Header>
+      <Profile session={session} />
     </div>
   );
 }
